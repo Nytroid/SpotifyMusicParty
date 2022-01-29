@@ -11,7 +11,6 @@ body {
   left: 0px;
   bottom: 0px;
   justify-content: center;
-  overflow: auto;
 }
 
 
@@ -22,7 +21,7 @@ body {
   align-items: center;
 }
 
-/* .center {
+.center {
   position: relative;
 }
 
@@ -40,8 +39,10 @@ body {
 }
 
 .MusicPlayer {
-  position: relative;
-  height: 50%;
+  position: static;
+  height: 0%;
+  display: block;
+  transform: translate(43px, -145px);
 }
 
 .Card {
@@ -59,23 +60,25 @@ body {
   { background-color:red !important; }
 
   .Code {
-    position: absolute;
-
-    transform: translate(170%, 250%)
-  }
+    position: static;
+  display: inline  }
 
 .Settings {
-  transform: translate(5%, -260%);
+  position: static;
+  transform: translate(0px, -120px);
 }
 
 .Log-In {
-  transform: translate(45%, -1900%);
+  position: static;
+  transform: translate(1px, -120px);
 }
 
 .LeaveRoom {
-  transform: translate(60%, -260%);
+  position:static;
+  transform: translate(0px, -120px);
 }
 .Host {
+  position: static;
   left: 60%;
   transform: translate(50%, 175%);
-} */
+} 

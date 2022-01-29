@@ -112,8 +112,14 @@
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production"
   },
+  "engines": {
+    "node": "16.13.2",
+    "npm": "8.4.0"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": ""
 }
+
+
