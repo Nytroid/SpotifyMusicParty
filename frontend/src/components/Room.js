@@ -86,34 +86,32 @@ export default function Room(props) {
       function renderSong() {
        return( <MusicPlayer {...roomData.song}/>)
       }
-    
-      function authenticateSpotify() {
-      fetch('spotify/is-authenticated').then((response) => response.json()).then((data) => {
-        setRoomData({
-          ...roomData, 
-          spotifyAuthenticated: data.status});
-          if (!data.status) {
-          fetch('spotify/get-auth-url').then((response) => response.json())
-          .then((data) => {
-            window.location.assign(data.url);
-          });
+
+    const authenticateSpotify = async () => {
+      const response = await fetch('/spotify/is-authenticated')
+      const data = await response.json()
+      setRoomData({...roomData,
+        spotifyAuthenticated: data.status})
+        if (!data.status) {
+          const response = await fetch('/spotify/get-auth-url')
+          const data = await response.json()
+          window.location.assign(data.url)
         }else {
-          window.alert("Already Connected!")
+          window.alert('Already Connected!')
         }
-        });
+    }
+
+    const getRoom = async () => {
+      const response = await fetch(`api/get-room?code=${roomCode}` )
+      const data = await response.json()
+      setRoomData({...roomData,
+        votesToSkip: data.votes_to_skip,
+        guestCanPause: data.guest_can_pause,
+        isHost: data.is_host})
     }
    
     useEffect(() => {
-        fetch("/api/get-room" + "?code=" + roomCode)
-           .then(res => res.json())
-          .then(data => {
-            setRoomData({
-              ...roomData, 
-              votesToSkip: data.votes_to_skip,
-              guestCanPause: data.guest_can_pause,
-              isHost: data.is_host})       
-        })
-      },[])
+        getRoom()}, [])
 
     useEffect(() => {
         renderSong()
@@ -126,7 +124,7 @@ export default function Room(props) {
     return (
       <Grid container spacing={1}>
         <Grid item xs={12} align='center' className='Code'>
-          <Typography variant='h2' component='h2'>
+          <Typography variant='h2' component='h2' style={{color: 'white'}}>
             Code: {roomCode}
           </Typography>
         </Grid>

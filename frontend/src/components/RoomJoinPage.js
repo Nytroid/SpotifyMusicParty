@@ -3,15 +3,11 @@ import { TextField, Button, Grid, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 export default class RoomJoinPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       roomCode: "",
       error: "",
     };
-    this.handleTextFieldChange = this.handleTextFieldChange.bind(this);
-    this.roomButtonPressed = this.roomButtonPressed.bind(this);
-  }
+  
   async componentDidMount() {
     fetch("/api/user-in-room")
       .then((response) => response.json())
@@ -58,13 +54,13 @@ export default class RoomJoinPage extends Component {
     );
   }
 
-  handleTextFieldChange(e) {
+  handleTextFieldChange = (e) => {
     this.setState({
       roomCode: e.target.value,
     });
   }
 
-  roomButtonPressed() {
+  roomButtonPressed = () => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

@@ -57,7 +57,7 @@ export default class CreateRoomPage extends Component {
         fetch('/api/create-room', requestOptions).then((response) => 
         response.json()).then((data) => window.location.assign(data.code));
     }
-    handleUpdateButtonPressed() {
+    async handleUpdateButtonPressed () {
         const requestOptions = {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -125,7 +125,7 @@ export default class CreateRoomPage extends Component {
             <Grid item xs={12} align="center">
                 <FormControl component="fieldset">
                     <FormHelperText >
-                        <div align="center" className="GuestCanPause">
+                        <div align="center" className="GuestCanPause" style={{color: 'white'}}>
                             Guest Control of Playback State
                         </div>
                     </FormHelperText>
@@ -152,8 +152,7 @@ export default class CreateRoomPage extends Component {
                     InputLabelProps={{className: "Votes__Label"}}
                     inputProps={{
                         min: 1,
-                        style: {textAlign: 'center'}
-
+                        style: {textAlign: 'center', color: 'white'}
                     }}
                     />
                     <FormHelperText>

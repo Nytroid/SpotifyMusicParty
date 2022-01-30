@@ -21,19 +21,11 @@ export default class MusicPlayer extends Component {
     this.getCurrentSong = this.getCurrentSong.bind(this);
     this.getUserProfile  = this.getUserProfile.bind(this)
   }
-  
-  getUserProfile() {
-    fetch("/spotify/user")
-      .then((response) => {
-        if (!response.ok) {
-          return {};
-        } else {
-          return response.json();
-        }
-      })
-      .then((data) => {
-        this.setState({ HostProfile: data });
-      });
+
+  getUserProfile = async() => {
+    const response = await fetch('/spotify/user');
+    const data = await response.json();
+    this.setState({HostProfile: data});
   }
 
   skipSong() {
@@ -61,19 +53,25 @@ playSong() {
 }
   
   
-  getCurrentSong() {
-    fetch("/spotify/current-song")
-      .then((response) => {
-        if (!response.ok) {
-          return {};
-        } else {
-          return response.json();
-        }
-      })
-      .then((data) => {
-        this.setState({ song: data });
-      });
-  }
+  // getCurrentSong() {
+  //   fetch("/spotify/current-song")
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         return {};
+  //       } else {
+  //         return response.json();
+  //       }
+  //     })
+  //     .then((data) => {
+  //       this.setState({ song: data });
+  //     });
+  // }
+
+getCurrentSong = async () => {
+  const response = await fetch("/spotify/current-song");
+  const data = await response.json();
+  this.setState({ song: data });
+}
 
   componentDidMount() {
     this.interval = setInterval(this.getCurrentSong, 500);
