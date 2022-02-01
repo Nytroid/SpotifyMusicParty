@@ -16,7 +16,11 @@ export default class MusicPlayer extends Component {
     this.state = {
         song: {},
         HostProfile: {}
-    }}
+    }
+
+    this.getCurrentSong = this.getCurrentSong.bind(this);
+    this.getUserProfile  = this.getUserProfile.bind(this)
+  }
 
   getUserProfile = async() => {
     const response = await fetch('/spotify/user');
