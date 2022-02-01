@@ -31,15 +31,15 @@ export default function Room(props) {
     function CloseSettings() {
       setRoomData({
         ...roomData, 
-        showSettings: false
-      });      
-      window.location.reload(true)
+        showSettings: false}); 
+        window.location.reload(true)     
     }
 
     function ShowSettings(value) {
       setRoomData({
         ...roomData, 
-        showSettings: value
+        showSettings: value,
+          
       });
     }
 
