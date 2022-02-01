@@ -4,13 +4,14 @@ import { Button, duration, Grid, Typography } from '@material-ui/core';
 import CreateRoomPage from './CreateRoomPage';
 import  MusicPlayer from './MusicPlayer';
 
-const leaveRoom = async() => {
+function leaveRoom() {
   const requestOptions = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'}, 
   }
-  response = await fetch('/api/leave-room', requestOptions)
-  window.location.assign('/')
+  fetch('/api/leave-room', requestOptions).then((_response) => {
+    window.location.assign('/');
+  });
 }
 
 
@@ -30,15 +31,15 @@ export default function Room(props) {
     function CloseSettings() {
       setRoomData({
         ...roomData, 
-        showSettings: false}); 
-        window.location.reload(true)     
+        showSettings: false
+      });      
+      window.location.reload(true)
     }
 
     function ShowSettings(value) {
       setRoomData({
         ...roomData, 
-        showSettings: value,
-          
+        showSettings: value
       });
     }
 
