@@ -45,7 +45,7 @@ export default class CreateRoomPage extends Component {
         });
     }
 
-    handleRoomButtonPressed() {
+    handleRoomButtonPressed = async() => {
         const requestOptions = { 
             method: 'POST',
             headers: {"Content-Type": 'application/json'}, 
@@ -54,10 +54,11 @@ export default class CreateRoomPage extends Component {
                 guest_can_pause: this.state.guestCanPause
                 }),
         };
-        fetch('/api/create-room', requestOptions).then((response) => 
-        response.json()).then((data) => window.location.assign(data.code));
+        const response = await fetch('/api/create-room', requestOptions)
+        data = await response.json()
+        window.location.assign(data.code)
     }
-    async handleUpdateButtonPressed () {
+    handleUpdateButtonPressed = async() => {
         const requestOptions = {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -67,8 +68,8 @@ export default class CreateRoomPage extends Component {
             code: this.props.roomCode,
           }),
         };
-        fetch("/api/update-room", requestOptions).then((response) => {
-          if (response.ok) {
+        const response =  await fetch("/api/update-room", requestOptions)
+        if (response.ok) {
             this.setState({
               successMsg: "Room updated successfully!",
             });
@@ -76,9 +77,7 @@ export default class CreateRoomPage extends Component {
             this.setState({
               errorMsg: "Error updating room...",
             });
-          }
-        });
-      }
+          }}
 
     renderCreateButton() {
         return(<Grid container spacing={1}>
