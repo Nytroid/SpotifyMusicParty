@@ -10,7 +10,7 @@ function leaveRoom() {
     headers: {'Content-Type': 'application/json'}, 
   }
   fetch('/api/leave-room', requestOptions).then((_response) => {
-    window.location.assign('/');
+  window.location.assign('/');
   });
 }
 

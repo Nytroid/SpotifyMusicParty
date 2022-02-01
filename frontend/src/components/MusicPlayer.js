@@ -17,9 +17,6 @@ export default class MusicPlayer extends Component {
         song: {},
         HostProfile: {}
     }
-
-    this.getCurrentSong = this.getCurrentSong.bind(this);
-    this.getUserProfile  = this.getUserProfile.bind(this)
   }
 
   getUserProfile = async() => {
@@ -52,21 +49,6 @@ playSong() {
     fetch('/spotify/play', requestOptions)
 }
   
-  
-  // getCurrentSong() {
-  //   fetch("/spotify/current-song")
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         return {};
-  //       } else {
-  //         return response.json();
-  //       }
-  //     })
-  //     .then((data) => {
-  //       this.setState({ song: data });
-  //     });
-  // }
-
 getCurrentSong = async () => {
   const response = await fetch("/spotify/current-song");
   const data = await response.json();
