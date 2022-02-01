@@ -18,7 +18,6 @@ export default class CreateRoomPage extends Component {
             guestCanPause: true,
             update: false,
             roomCode: null,
-            updateCallback: () => {},
         };
 
     constructor(props) {
@@ -28,12 +27,9 @@ export default class CreateRoomPage extends Component {
             votesToSkip: this.props.votesToSkip, 
             errorMsg: "",
             successMsg: "",
-        }
-
-        this.handleRoomButtonPressed = this.handleRoomButtonPressed.bind(this);
-        this.handleUpdateButtonPressed = this.handleUpdateButtonPressed.bind(this)
-    }
-    handleVotesChange = (e) => {
+        }}
+   
+        handleVotesChange = (e) => {
         this.setState({
                votesToSkip: e.target.value
     });
@@ -57,9 +53,6 @@ export default class CreateRoomPage extends Component {
         let response = await fetch('/api/create-room', requestOptions)
         let data = await response.json()
         window.location.assign(data.code)
-        
-        // fetch('/api/create-room', requestOptions).then((response) => 
-        // response.json()).then((data) => window.location.assign(data.code));
     }
 
     handleUpdateButtonPressed = async() => {
