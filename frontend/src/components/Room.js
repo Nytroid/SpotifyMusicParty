@@ -10,7 +10,7 @@ function leaveRoom() {
     headers: {'Content-Type': 'application/json'}, 
   }
   fetch('/api/leave-room', requestOptions).then((_response) => {
-    window.location.assign('/');
+  window.location.assign('/');
   });
 }
 
@@ -31,15 +31,15 @@ export default function Room(props) {
     function CloseSettings() {
       setRoomData({
         ...roomData, 
-        showSettings: false}); 
-        window.location.reload(true)     
+        showSettings: false
+      });      
+      window.location.reload(true)
     }
 
     function ShowSettings(value) {
       setRoomData({
         ...roomData, 
-        showSettings: value,
-          
+        showSettings: value
       });
     }
 

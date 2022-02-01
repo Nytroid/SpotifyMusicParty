@@ -8,15 +8,12 @@ export default class RoomJoinPage extends Component {
       error: "",
     };
   
-  async componentDidMount() {
-    fetch("/api/user-in-room")
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          roomCode: data.code,
-        });
-      });
-  }
+    componentDidMount = async() => {
+      response = await fetch("/api/user-in-room")
+      data = await response.json()
+      this.setState({roomCode: data.code})
+    }
+
   render() {
     return (
       <Grid container spacing={1}>
